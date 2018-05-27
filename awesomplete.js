@@ -32,6 +32,7 @@ var _ = function (input, o) {
 		data: _.DATA,
 		filter: _.FILTER_CONTAINS,
 		sort: o.sort === false ? false : _.SORT_BYLENGTH,
+		container: _.CONTAINER,
 		item: _.ITEM,
 		replace: _.REPLACE
 	}, o);
@@ -40,10 +41,7 @@ var _ = function (input, o) {
 
 	// Create necessary elements
 
-	this.container = $.create("div", {
-		className: "awesomplete",
-		around: input
-	});
+	this.container = this.container(input);
 
 	this.ul = $.create("ul", {
 		hidden: "hidden",
@@ -203,11 +201,13 @@ _.prototype = {
 		$.unbind(this.input, this._events.input);
 		$.unbind(this.input.form, this._events.form);
 
-		//move the input out of the awesomplete container and remove the container and its children
-		var parentNode = this.container.parentNode;
+		if (this.input.parentNode === this.container) {
+			//move the input out of the awesomplete container and remove the container and its children
+			var parentNode = this.container.parentNode;
 
-		parentNode.insertBefore(this.input, this.container);
-		parentNode.removeChild(this.container);
+			parentNode.insertBefore(this.input, this.container);
+			parentNode.removeChild(this.container);
+		}
 
 		//remove autocomplete and aria-autocomplete attributes
 		this.input.removeAttribute("autocomplete");
@@ -350,6 +350,13 @@ _.SORT_BYLENGTH = function (a, b) {
 
 	return a < b? -1 : 1;
 };
+
+_.CONTAINER = function (input) {
+	return $.create("div", {
+		className: "awesomplete",
+		around: input
+	});
+}
 
 _.ITEM = function (text, input, item_id) {
 	var html = input.trim() === "" ? text : text.replace(RegExp($.regExpEscape(input.trim()), "gi"), "<mark>$&</mark>");
