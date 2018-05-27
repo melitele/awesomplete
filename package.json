@@ -28,5 +28,9 @@
     "karma-html2js-preprocessor": "^0.1.0",
     "karma-jasmine": "^0.3.6",
     "karma-jasmine-def": "^0.1.0"
-  }
+  },
+  "files": [
+    "awesomplete.js",
+    "awesomplete.css"
+  ]
 }
