@@ -1,10 +1,14 @@
 
+2.0.1 / 2018-05-26
+==================
+
+ * container function to generate container element
+
 2.0.0 / 2018-05-26
 ==================
 
  * limit package content
  * rename package to @melitele/awesomplete
- * container function to customize generating container element
  * Autofocus support (#17138)
  * Added an installation section (#17129)
  * Ensure global Awesomplete on self is defined before any possible call to init(). (#17131)
