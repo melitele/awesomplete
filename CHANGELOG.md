@@ -1,3 +1,19 @@
+
+2.0.0 / 2018-05-26
+==================
+
+ * limit package content
+ * rename package to @melitele/awesomplete
+ * container function to customize generating container element
+ * Autofocus support (#17138)
+ * Added an installation section (#17129)
+ * Ensure global Awesomplete on self is defined before any possible call to init(). (#17131)
+ * Fix undefined error in evaluate function (#17128)
+ * fix: allow selection on mobile ios (#17006)
+ * Fix for #17113 (#17118)
+ * Fix mixed content Github buttons (#17072)
+ * trying to meet a11y criteria (#17068)
+
 # 1.1.1 (2016-06-25)
 
 ## Fixes
