@@ -201,11 +201,13 @@ _.prototype = {
 		$.unbind(this.input, this._events.input);
 		$.unbind(this.input.form, this._events.form);
 
-		//move the input out of the awesomplete container and remove the container and its children
-		var parentNode = this.container.parentNode;
+		if (this.input.parentNode === this.container) {
+			//move the input out of the awesomplete container and remove the container and its children
+			var parentNode = this.container.parentNode;
 
-		parentNode.insertBefore(this.input, this.container);
-		parentNode.removeChild(this.container);
+			parentNode.insertBefore(this.input, this.container);
+			parentNode.removeChild(this.container);
+		}
 
 		//remove autocomplete and aria-autocomplete attributes
 		this.input.removeAttribute("autocomplete");
@@ -350,10 +352,10 @@ _.SORT_BYLENGTH = function (a, b) {
 };
 
 _.CONTAINER = function (input) {
-  return $.create("div", {
-    className: "awesomplete",
-    around: input
-  });
+	return $.create("div", {
+		className: "awesomplete",
+		around: input
+	});
 }
 
 _.ITEM = function (text, input, item_id) {
