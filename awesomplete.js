@@ -23,7 +23,9 @@ var _ = function (input, o) {
 	this.input.setAttribute("aria-owns", "awesomplete_list_" + this.count);
 	this.input.setAttribute("role", "combobox");
 
-	o = o || {};
+	// store constructor options in case we need to distinguish
+	// between default and customized behavior later on
+	this.options = o = o || {};
 
 	configure(this, {
 		minChars: 2,
@@ -201,7 +203,8 @@ _.prototype = {
 		$.unbind(this.input, this._events.input);
 		$.unbind(this.input.form, this._events.form);
 
-		if (this.input.parentNode === this.container) {
+		// cleanup container if it was created by Awesomplete but leave it alone otherwise
+		if (!this.options.container) {
 			//move the input out of the awesomplete container and remove the container and its children
 			var parentNode = this.container.parentNode;
 
